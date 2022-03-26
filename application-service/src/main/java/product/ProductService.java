@@ -3,7 +3,7 @@ package product;
 import org.springframework.stereotype.Service;
 
 @Service
-public record ProductService() {
+public record ProductService(ProductRepository productRepository) {
 
     public void addNewProduct(ProductAddingRequest request) {
 
@@ -15,6 +15,8 @@ public record ProductService() {
                 .build();
         // todo: check if name is valid
         // todo: check if name not taken
-        // todo: check product in db
+
+        productRepository.save(product);
     }
+
 }
