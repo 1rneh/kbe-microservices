@@ -23,15 +23,18 @@ public class Product {
             strategy = GenerationType.SEQUENCE,
             generator = "product_id_sequence"
     )
-    private Integer id;
+    @Column(updatable = false)
+    private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     private String description;
 
+    @Column(nullable = false)
     private Double price;
 
+    @Column(nullable = false)
     private Boolean isFood;
 
-    private Double tax;
 }

@@ -9,24 +9,28 @@ services:
     volumes:
       - postgres:/data/postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
       - postgres
     restart: unless-stopped
 
-  postgres-delivery-info:
-    container_name: postgres-delivery-info
-    image: postgres
-    environment:
-      POSTGRES_USER: henri
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
+  mongodb-deliver-info:
+    container_name: mongodb-deliver-info
+    image: mongo
     volumes:
-      - postgres:/data/postgres
+      - mongo:/data/mongo
     ports:
-      - "5105:5432"
-    networks:
-      - postgres
+      - 27017:27017
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    ports:
+      - 8081:8081
     restart: unless-stopped
 
   pgadmin:
@@ -43,10 +47,14 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+
 networks:
   postgres:
+    driver: bridge
+  mongodb:
     driver: bridge
 
 volumes:
   postgres:
   pgadmin:
+  mongo:

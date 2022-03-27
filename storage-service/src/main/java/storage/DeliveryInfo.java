@@ -3,28 +3,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Document
 public class DeliveryInfo {
 
     @Id
-    @SequenceGenerator(
-            name = "delivery_info_id_sequence",
-            sequenceName = "delivery_info_id_sequence"
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "delivery_info_id_sequence"
-    )
-    private Integer id;
+    private long id;
 
     private String name;
 

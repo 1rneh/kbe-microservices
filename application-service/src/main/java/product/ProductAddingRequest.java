@@ -5,5 +5,4 @@ public record ProductAddingRequest(
         String description,
         Double price,
         Boolean isFood
-) {
-}
+) {}

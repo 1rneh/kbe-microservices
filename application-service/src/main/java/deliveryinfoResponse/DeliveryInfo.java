@@ -19,7 +19,6 @@ public class DeliveryInfo {
             name = "delivery_info_id_sequence",
             sequenceName = "delivery_info_id_sequence"
     )
-
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "delivery_info_id_sequence"

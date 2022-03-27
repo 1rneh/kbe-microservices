@@ -1,7 +1,12 @@
 package storage;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DeliveryInfoRepository extends JpaRepository<DeliveryInfo, Integer> {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.Optional;
+
+public interface DeliveryInfoRepository extends MongoRepository<DeliveryInfo, Integer> {
+
+    Optional<DeliveryInfo> findDeliveryInfoByName(String name);
 
 }
