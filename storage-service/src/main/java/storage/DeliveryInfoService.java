@@ -21,16 +21,15 @@ public class DeliveryInfoService {
 
         return infoOptional
                 .orElseThrow(() -> new IllegalStateException("info not found."));
-
     }
 
     public void addNewDeliveryInfo(DeliveryAddingRequest request) {
 
-        DeliveryInfo deliveryInfo = DeliveryInfo.builder()
-                .name(request.name())
-                .deliveryTime(new Date())
-                .location(request.location())
-                .build();
+        DeliveryInfo deliveryInfo = new DeliveryInfo(
+                request.name(),
+                new Date(),
+                request.amount(),
+                request.location());
 
         deliveryInfoRepository.save(deliveryInfo);
     }

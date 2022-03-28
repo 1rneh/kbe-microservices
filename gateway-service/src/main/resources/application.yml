@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     service-url:
-      default-zone: https://localhost:8761/eureka/
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
     instance:
       prefereIpAddress: true
 
@@ -17,16 +17,21 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: application-service
+        - id: APPLICATION-SERVICE
           uri: lb://application-service
           predicates:
-            - Path=/products/**
-        - id: calculator-service
+            - Path=/v1/api/products/**
+          filters:
+            - RewritePath=/v1/api/products/(?<path>.*), /$\{path}
+        - id: CALCULATOR-SERVICE
           uri: lb://calculator-service
           predicates:
             - Path=/calculator/**
-        - id: storage-service
+          filters:
+            - RewritePath=/calculator/(?<path>.*), /$\{path}
+        - id: STORAGE-SERVICE
           uri: lb://storage-service
           predicates:
-            - Path=/importProducts/**
-
+            - Path=/v1/api/delivery-infos/**
+          filters:
+            - RewritePath=/v1/api/delivery-infos/(?<path>.*), /$\{path}

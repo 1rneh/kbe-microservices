@@ -37,4 +37,10 @@ public class Product {
     @Column(nullable = false)
     private Boolean isFood;
 
+    public Product(String name, String description, Double price, Boolean isFood) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isFood = isFood;
+    }
 }
