@@ -15,6 +15,7 @@
     <module>calculator-service</module>
     <module>storage-service</module>
     <module>eureka-service</module>
+    <module>gateway-service</module>
   </modules>
 
   <name>shop-services</name>
@@ -49,6 +50,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
     </dependency>
   </dependencies>
 
