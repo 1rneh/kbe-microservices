@@ -10,7 +10,7 @@ import java.util.List;
 
 @Configuration
 public class DeliveryInfoConfig {
-/*
+
     @Bean
     CommandLineRunner commandLineRunner(DeliveryInfoRepository deliveryInfoRepository) {
         return args -> {
@@ -86,5 +86,4 @@ public class DeliveryInfoConfig {
         };
     }
 
- */
 }

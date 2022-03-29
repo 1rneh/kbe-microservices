@@ -1,5 +1,4 @@
 package storage;
-import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +9,7 @@ import java.util.Date;
 public class DeliveryInfo {
 
     @Id
-    private long id;
+    private String id;
 
     private String name;
 
