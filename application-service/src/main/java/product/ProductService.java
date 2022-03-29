@@ -1,11 +1,18 @@
 package product;
 
+import calculatorResponse.CalculatorResponse;
+import deliveryinfoResponse.DeliveryInfo;
 import deliveryinfoResponse.DeliveryInfoResponse;
+import dtoResponse.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.TemporalAmount;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,21 +40,37 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProduct(Integer productId) throws IllegalStateException {
-        Optional<Product> productOption = productRepository.findById(productId);
+    public ProductDto getProduct(long productId) throws IllegalStateException {
 
-        productOption.ifPresent(
-                product -> {
-                    DeliveryInfoResponse deliveryInfoResponse = restTemplate.getForObject(
-                            "http://localhost:8081/api/v1/delivery-infos/{productId}",
-                            DeliveryInfoResponse.class,
-                            product.getId()
-                    );
-                    log.info("received deliveryInfo: " + deliveryInfoResponse.deliveryInfo());
-                }
-        );
-
-        return productOption
+        return productRepository
+                .findById(productId)
+                .map(product -> retrieveProductInformation(product))
                 .orElseThrow(() -> new IllegalStateException("product doen't exist."));
+    }
+
+    private ProductDto retrieveProductInformation(Product product) {
+        DeliveryInfoResponse deliveryInfoResponse = restTemplate.getForObject(
+                "https://storage-service/rest/delivery-infos/{productName}",
+                DeliveryInfoResponse.class,
+                product.getName()
+        );
+        CalculatorResponse calculatorResponse = restTemplate.getForObject(
+                "https://calculator-service/rest/calculator/{productPrice}",
+                CalculatorResponse.class,
+                product.getPrice()
+        );
+        Date deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));
+
+        return new ProductDto(
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                calculatorResponse.tax(),
+                product.getEdible(),
+                product.getOrigin(),
+                deliveryDate,
+                deliveryInfoResponse.deliveryInfo().getDeliveryTime(),
+                deliveryInfoResponse.deliveryInfo().getAmount(),
+                deliveryInfoResponse.deliveryInfo().getLocation());
     }
 }

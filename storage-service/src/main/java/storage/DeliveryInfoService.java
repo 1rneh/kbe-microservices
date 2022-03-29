@@ -14,7 +14,7 @@ public class DeliveryInfoService {
 
     private final DeliveryInfoRepository deliveryInfoRepository;
 
-    public DeliveryInfo findInfo(String infoId) throws IllegalStateException {
+    public DeliveryInfo findInfoById(String infoId) throws IllegalStateException {
 
         Optional<DeliveryInfo> infoOptional =
                 deliveryInfoRepository.findById(infoId);
@@ -36,5 +36,14 @@ public class DeliveryInfoService {
 
     public List<DeliveryInfo> getDeliveryInfos() {
         return deliveryInfoRepository.findAll();
+    }
+
+    public DeliveryInfo findInfoByName(String infoName) {
+
+        Optional<DeliveryInfo> infoOptional =
+                deliveryInfoRepository.findByName(infoName);
+
+        return infoOptional
+                .orElseThrow(() -> new IllegalStateException("info not found."));
     }
 }

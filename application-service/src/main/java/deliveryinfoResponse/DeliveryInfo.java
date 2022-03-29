@@ -23,12 +23,12 @@ public class DeliveryInfo {
             strategy = GenerationType.SEQUENCE,
             generator = "delivery_info_id_sequence"
     )
-    private Integer id;
-
-    private String name;
+    private String id;
 
     private Date deliveryTime;
 
     private String location;
+
+    private int amount;
 
 }

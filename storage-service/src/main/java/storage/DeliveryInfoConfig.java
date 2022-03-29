@@ -80,6 +80,7 @@ public class DeliveryInfoConfig {
                     "here"
             );
 
+            deliveryInfoRepository.deleteAll();
             deliveryInfoRepository.saveAll(
                     List.of(apple, pear, hummus, lamp, tomatoes, book, monitor, coffee, carrot, cream)
             );

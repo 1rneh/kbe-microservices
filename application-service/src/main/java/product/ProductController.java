@@ -1,6 +1,7 @@
 package product;
 
 
+import dtoResponse.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class ProductController {
     }
 
     @GetMapping("{productId}")
-    public Product getProduct(
-            @PathVariable Integer productId
+    public ProductDto getProduct(
+            @PathVariable long productId
     ) {
         return productService.getProduct(productId);
     }

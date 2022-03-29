@@ -13,12 +13,22 @@ import java.util.List;
 public class DeliveryInfoController {
 
     private final DeliveryInfoService deliveryInfoService;
-
+/*
     @GetMapping("{infoId}")
-    public DeliveryInfoResponse getDeliveryInfo(
+    public DeliveryInfoResponse getDeliveryInfoById(
             @PathVariable("infoId") String infoId
     ) {
-        DeliveryInfo infoFound = deliveryInfoService.findInfo(infoId);
+        DeliveryInfo infoFound = deliveryInfoService.findInfoById(infoId);
+        return new DeliveryInfoResponse(infoFound);
+    }
+
+ */
+
+    @GetMapping("{infoName}")
+    public DeliveryInfoResponse getDeliveryInfoByName(
+            @PathVariable("infoName") String infoName
+    ) {
+        DeliveryInfo infoFound = deliveryInfoService.findInfoByName(infoName);
         return new DeliveryInfoResponse(infoFound);
     }
 

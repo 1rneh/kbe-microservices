@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface DeliveryInfoRepository extends MongoRepository<DeliveryInfo, String> {
 
-    Optional<DeliveryInfo> findDeliveryInfoByName(String name);
+    Optional<DeliveryInfo> findByName(String name);
 
 }
