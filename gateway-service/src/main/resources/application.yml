@@ -25,7 +25,3 @@ spring:
           uri: lb://calculator-service
           predicates:
             - Path=/rest/calculator/**
-        - id: STORAGE-SERVICE
-          uri: lb://storage-service
-          predicates:
-            - Path=/rest/delivery-infos/**
