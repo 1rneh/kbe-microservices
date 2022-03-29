@@ -22,66 +22,77 @@ public class ProductConfig {
                     "apple",
                     "is tasty and red",
                     1.99,
-                    true
+                    true,
+                    "Italy"
             );
 
             Product pear = new Product(
                     "pear",
                     "is not tasty and yellow",
                     1.99,
-                    true
+                    true,
+                    "Caucasus"
             );
             Product hummus = new Product(
                     "hummus",
                     "selfmade",
                     0.00,
-                    true
+                    true,
+                    "home"
             );
 
             Product lamp = new Product(
                     "lamp",
                     "comes with led bulb",
                     19.99,
-                    false
+                    false,
+                    "Germany"
             );
             Product tomatoes = new Product(
                     "tomatoes",
                     "organically grown",
                     2.99,
-                    true
+                    true,
+                    "Ecuador"
             );
 
             Product book = new Product(
                     "book",
                     "psycho thriller",
                     12.99,
-                    false
+                    false,
+                    "Great Britain"
             );
             Product monitor = new Product(
                     "monitor",
                     "13 inches",
                     199.99,
-                    false
+                    false,
+                    "China"
             );
 
             Product coffee = new Product(
                     "coffee",
                     "blend",
                     7.99,
-                    true
+                    true,
+                    "Ethiopia"
             );
+
             Product carrot = new Product(
                     "carrot",
                     "of the color orange",
                     0.59,
-                    true
+                    true,
+                    "Germany"
             );
 
             Product cream = new Product(
                     "cream",
                     "lavendel and lemon grass",
                     4.99,
-                    false
+                    false,
+                    "supermarket"
             );
 
             productRepository.saveAll(

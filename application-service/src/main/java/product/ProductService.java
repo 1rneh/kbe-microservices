@@ -23,11 +23,9 @@ public class ProductService {
                 .name(request.name())
                 .description(request.description())
                 .price(request.price())
-                .isFood(request.isFood())
+                .edible(request.edible())
                 .build();
-        // todo: check if name is valid
-        // todo: check if name not taken
-        // todo: get delivery info
+
         productRepository.save(product);
     }
 

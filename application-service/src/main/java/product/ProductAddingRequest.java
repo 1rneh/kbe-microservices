@@ -4,5 +4,6 @@ public record ProductAddingRequest(
         String name,
         String description,
         Double price,
-        Boolean isFood
+        Boolean edible,
+        String origin
 ) {}

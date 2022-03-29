@@ -35,12 +35,15 @@ public class Product {
     private Double price;
 
     @Column(nullable = false)
-    private Boolean isFood;
+    private Boolean edible;
 
-    public Product(String name, String description, Double price, Boolean isFood) {
+    private String origin;
+
+    public Product(String name, String description, Double price, Boolean edible, String origin) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.isFood = isFood;
+        this.edible = edible;
+        this.origin = origin;
     }
 }
