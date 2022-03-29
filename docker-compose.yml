@@ -6,6 +6,8 @@ services:
       POSTGRES_USER: henri
       POSTGRES_PASSWORD: password
       POSTGRES_DB: application_db
+    volumes:
+      - postgres:/data/postgres
     ports:
       - 5432:5432
     networks:
@@ -17,6 +19,8 @@ services:
     image: mongo
     environment:
       MONGO_INITDB_DATABASE: storage_db
+    volumes:
+      - mongo:/data/mongo
     ports:
       - 27017:27017
     restart: unless-stopped
