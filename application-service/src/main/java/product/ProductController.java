@@ -10,7 +10,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/products")
+@RequestMapping("rest/products")
 public class ProductController {
 
     private final ProductService productService;

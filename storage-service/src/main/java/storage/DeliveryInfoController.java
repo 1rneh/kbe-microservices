@@ -9,14 +9,14 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/delivery-infos")
+@RequestMapping("rest/delivery-infos")
 public class DeliveryInfoController {
 
     private final DeliveryInfoService deliveryInfoService;
 
     @GetMapping("{infoId}")
     public DeliveryInfoResponse getDeliveryInfo(
-            @PathVariable("infoId") Integer infoId
+            @PathVariable("infoId") String infoId
     ) {
         DeliveryInfo infoFound = deliveryInfoService.findInfo(infoId);
         return new DeliveryInfoResponse(infoFound);

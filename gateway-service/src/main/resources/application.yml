@@ -20,18 +20,12 @@ spring:
         - id: APPLICATION-SERVICE
           uri: lb://application-service
           predicates:
-            - Path=/v1/api/products/**
-          filters:
-            - RewritePath=/v1/api/products/(?<path>.*), /$\{path}
+            - Path=/rest/products/**
         - id: CALCULATOR-SERVICE
           uri: lb://calculator-service
           predicates:
-            - Path=/calculator/**
-          filters:
-            - RewritePath=/calculator/(?<path>.*), /$\{path}
+            - Path=/rest/calculator/**
         - id: STORAGE-SERVICE
           uri: lb://storage-service
           predicates:
-            - Path=/v1/api/delivery-infos/**
-          filters:
-            - RewritePath=/v1/api/delivery-infos/(?<path>.*), /$\{path}
+            - Path=/rest/delivery-infos/**

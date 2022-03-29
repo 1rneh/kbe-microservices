@@ -14,7 +14,7 @@ public class DeliveryInfoService {
 
     private final DeliveryInfoRepository deliveryInfoRepository;
 
-    public DeliveryInfo findInfo(Integer infoId) throws IllegalStateException {
+    public DeliveryInfo findInfo(String infoId) throws IllegalStateException {
 
         Optional<DeliveryInfo> infoOptional =
                 deliveryInfoRepository.findById(infoId);
