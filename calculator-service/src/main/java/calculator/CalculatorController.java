@@ -16,9 +16,10 @@ public class CalculatorController {
     private final TaxCalculator taxCalculator;
 
     @GetMapping(path = "{price}")
-    public Double getTax(
+    public CalculatorResponse getTax(
             @PathVariable("price") Double price
     ) {
-        return taxCalculator.calculateMehrwertsteuer(price);
+        double tax = taxCalculator.calculateMehrwertsteuer(price);
+        return new CalculatorResponse(tax);
     }
 }
