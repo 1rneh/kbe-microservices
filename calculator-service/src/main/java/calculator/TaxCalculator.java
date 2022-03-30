@@ -1,12 +1,16 @@
 package calculator;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
+@Component
 public class TaxCalculator {
 
-    public double calculateMehrwertsteuer(Double totalPrice) {
+    private static final double TAXRATE = 0.19;
 
-        return totalPrice * 0.19;
+    public double calculateMehrwertsteuer(double totalPrice) {
+
+        return totalPrice * TAXRATE;
     }
 }

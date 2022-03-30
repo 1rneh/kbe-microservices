@@ -2,10 +2,7 @@ package calculator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Builder
 @AllArgsConstructor
@@ -13,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("rest/calculator")
 public class CalculatorController {
 
-    private final TaxCalculator taxCalculator;
+    private final CalculatorService calculatorService;
 
     @GetMapping(path = "{price}")
-    public CalculatorResponse getTax(
-            @PathVariable("price") Double price
+    public CalculatorResponse calculateTax(
+            @PathVariable("price") double price
     ) {
-        double tax = taxCalculator.calculateMehrwertsteuer(price);
+        double tax = calculatorService.calculateMehrwertsteuer(price);
         return new CalculatorResponse(tax);
     }
 }
