@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -16,68 +18,68 @@ public class DeliveryInfoConfig {
         return args -> {
             DeliveryInfo apple = new DeliveryInfo(
                     "apple",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.TEN,
                     "here"
             );
 
             DeliveryInfo pear = new DeliveryInfo(
                     "pear",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.ONE,
-                    "here"
+                    "lost"
             );
             DeliveryInfo hummus = new DeliveryInfo(
                     "hummus",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.TEN,
-                    "here"
+                    "somewhere else"
             );
 
             DeliveryInfo lamp = new DeliveryInfo(
                     "lamp",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.ZERO,
-                    "here"
+                    "somewhere"
             );
             DeliveryInfo tomatoes = new DeliveryInfo(
                     "tomatoes",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.TEN,
-                    "here"
+                    "there"
             );
 
             DeliveryInfo book = new DeliveryInfo(
                     "book",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.TEN,
                     "here"
             );
             DeliveryInfo monitor = new DeliveryInfo(
                     "monitor",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.ZERO,
-                    "here"
+                    "behind you"
             );
 
             DeliveryInfo coffee = new DeliveryInfo(
                     "coffee",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.ONE,
-                    "here"
+                    "arround the corner"
             );
             DeliveryInfo carrot = new DeliveryInfo(
                     "carrot",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.ZERO,
-                    "here"
+                    "nowhere"
             );
 
             DeliveryInfo cream = new DeliveryInfo(
                     "cream",
-                    new Date(),
+                    new Time(Instant.now().toEpochMilli()),
                     BigDecimal.TEN,
-                    "here"
+                    "where"
             );
 
             deliveryInfoRepository.deleteAll();

@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -17,13 +18,13 @@ public class DeliveryInfo {
     @Indexed(unique = true)
     private String name;
 
-    private Date deliveryTime;
+    private Time deliveryTime;
 
     private BigDecimal amount;
 
     private String location;
 
-    public DeliveryInfo(String name, Date deliveryTime, BigDecimal amount, String location) {
+    public DeliveryInfo(String name, Time deliveryTime, BigDecimal amount, String location) {
         this.name = name;
         this.deliveryTime = deliveryTime;
         this.amount = amount;

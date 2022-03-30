@@ -1,6 +1,4 @@
 package deliveryinfoResponse;
 
 
-public record DeliveryInfoResponse(DeliveryInfo deliveryInfo) {
-
-}
+public record DeliveryInfoResponse(DeliveryInfo deliveryInfo) { }
