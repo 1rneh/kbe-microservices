@@ -1,9 +1,12 @@
 package product;
 
+import java.util.Date;
+
 public record ProductAddingRequest(
         String name,
         String description,
-        Double price,
-        Boolean edible,
-        String origin
+        double price,
+        boolean edible,
+        String origin,
+        Date deliveryDate
 ) {}

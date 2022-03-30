@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 
 @Data
 @Builder
@@ -24,7 +27,7 @@ public class Product {
             generator = "product_id_sequence"
     )
     @Column(updatable = false)
-    private Long id;
+    private long id;
 
     @Column(nullable = false)
     private String name;
@@ -32,18 +35,24 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private Double price;
+    private double price;
 
     @Column(nullable = false)
-    private Boolean edible;
+    private boolean edible;
 
+    @Column(nullable = false)
     private String origin;
 
-    public Product(String name, String description, Double price, Boolean edible, String origin) {
+    @Column(nullable = false)
+    private Date deliveryDate;
+
+    public Product(String name, String description, double price, boolean edible, String origin) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.edible = edible;
         this.origin = origin;
+        this.deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));;
     }
+
 }

@@ -59,16 +59,15 @@ public class ProductService {
                 CalculatorResponse.class,
                 product.getPrice()
         );
-        Date deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));
 
         return new ProductDto(
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
                 calculatorResponse.tax(),
-                product.getEdible(),
+                product.isEdible(),
                 product.getOrigin(),
-                deliveryDate,
+                product.getDeliveryDate(),
                 deliveryInfoResponse.deliveryInfo().getDeliveryTime(),
                 deliveryInfoResponse.deliveryInfo().getAmount(),
                 deliveryInfoResponse.deliveryInfo().getLocation());

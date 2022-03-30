@@ -16,5 +16,4 @@ public record ProductDto(
         Date deliveryTime,
         int amount,
         String location
-) {
-}
+) { }

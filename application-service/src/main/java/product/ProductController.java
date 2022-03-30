@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -17,7 +18,8 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public void addProduct(@RequestBody ProductAddingRequest productAddingRequest) {
+    public void addProduct(
+            @Valid @RequestBody ProductAddingRequest productAddingRequest) {
         productService.addNewProduct(productAddingRequest);
         log.info("added product: {}", productAddingRequest);
     }
@@ -29,7 +31,7 @@ public class ProductController {
 
     @GetMapping("{productId}")
     public ProductDto getProduct(
-            @PathVariable long productId
+            @Valid @PathVariable long productId
     ) {
         return productService.getProduct(productId);
     }
