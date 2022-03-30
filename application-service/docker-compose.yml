@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: henri
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: application_db
+      POSTGRES_DB: product_db
     volumes:
       - postgres:/data/postgres
     ports:
