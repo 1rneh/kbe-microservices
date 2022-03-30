@@ -1,10 +1,8 @@
-package com.henri.kbe.calculator;
+package com.henri.kbe.calculator.domain;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@Component
 public class TaxCalculator {
 
     private static final double TAXRATE = 0.19;

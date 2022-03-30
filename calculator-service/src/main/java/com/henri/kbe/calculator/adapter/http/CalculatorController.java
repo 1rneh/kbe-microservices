@@ -1,5 +1,7 @@
-package com.henri.kbe.calculator;
+package com.henri.kbe.calculator.adapter.http;
 
+import com.henri.kbe.calculator.domain.CalculatorService;
+import com.henri.kbe.calculator.domain.dto.TaxDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,9 @@ public class CalculatorController {
     private final CalculatorService calculatorService;
 
     @GetMapping(path = "{price}")
-    public CalculatorResponse calculateTax(
+    public TaxDto calculateTax(
             @PathVariable("price") double price
     ) {
-        double tax = calculatorService.calculateMehrwertsteuer(price);
-        return new CalculatorResponse(tax);
+        return calculatorService.calculateMehrwertsteuer(price);
     }
 }

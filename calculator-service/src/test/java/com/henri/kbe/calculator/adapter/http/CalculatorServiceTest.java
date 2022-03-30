@@ -1,9 +1,8 @@
-package calculator;
+package com.henri.kbe.calculator.adapter.http;
 
 import com.henri.kbe.CalculatorApplication;
-import com.henri.kbe.calculator.CalculatorController;
-import com.henri.kbe.calculator.CalculatorService;
-import com.henri.kbe.calculator.TaxCalculator;
+import com.henri.kbe.calculator.domain.CalculatorService;
+import com.henri.kbe.calculator.domain.TaxCalculator;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CalculatorController.class)
@@ -31,8 +32,8 @@ public class CalculatorServiceTest {
     public void whenGetRequestToCalculatorAndValidPrice_ThenCorrectResponse() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/rest/calculator/2.99")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .get("/rest/calculator/2.99")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$.tax", is(0.5681)));
@@ -44,7 +45,7 @@ public class CalculatorServiceTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/rest/calculator/notAPrice")
                         .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().is(400));
+                .andExpect(status().is(400));
     }
 
     @Test
