@@ -1,4 +1,4 @@
-package calculator;
+package com.henri.kbe.calculator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

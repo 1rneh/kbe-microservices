@@ -1,5 +1,9 @@
 package calculator;
 
+import com.henri.kbe.CalculatorApplication;
+import com.henri.kbe.calculator.CalculatorController;
+import com.henri.kbe.calculator.CalculatorService;
+import com.henri.kbe.calculator.TaxCalculator;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(CalculatorController.class)
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = {CalculatorApplication.class,CalculatorService.class, TaxCalculator.class})
+@ContextConfiguration(classes = {CalculatorApplication.class, CalculatorService.class, TaxCalculator.class})
 public class CalculatorServiceTest {
 
     @Autowired

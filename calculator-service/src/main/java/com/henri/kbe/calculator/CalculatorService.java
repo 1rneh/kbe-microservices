@@ -1,4 +1,4 @@
-package calculator;
+package com.henri.kbe.calculator;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

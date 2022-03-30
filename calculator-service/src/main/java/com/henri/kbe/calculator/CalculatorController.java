@@ -1,4 +1,4 @@
-package calculator;
+package com.henri.kbe.calculator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

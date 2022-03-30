@@ -1,9 +1,12 @@
-package product;
+package com.henri.kbe.adapter.http;
 
 
-import dtoResponse.ProductDto;
+import com.henri.kbe.domain.ProductService;
+import com.henri.kbe.domain.dto.ProductDetailsDto;
+import com.henri.kbe.domain.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,21 +22,20 @@ public class ProductController {
 
     @PostMapping
     public void addProduct(
-            @Valid @RequestBody ProductAddingRequest productAddingRequest) {
-        productService.addNewProduct(productAddingRequest);
-        log.info("added product: {}", productAddingRequest);
+            @Valid @RequestBody ProductDto productDto
+    ) {
+        productService.addNewProduct(productDto);
     }
 
     @GetMapping
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         return productService.getProducts();
     }
 
     @GetMapping("{productId}")
-    public ProductDto getProduct(
-            @Valid @PathVariable long productId
+    public ProductDetailsDto getProduct(
+            @PathVariable long productId
     ) {
         return productService.getProduct(productId);
     }
-
 }

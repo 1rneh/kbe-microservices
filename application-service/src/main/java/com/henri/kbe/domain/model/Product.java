@@ -1,4 +1,4 @@
-package product;
+package com.henri.kbe.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +37,6 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
-    @Column(nullable = false)
     private boolean edible;
 
     @Column(nullable = false)
@@ -52,7 +51,7 @@ public class Product {
         this.price = price;
         this.edible = edible;
         this.origin = origin;
-        this.deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));;
+        this.deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));
     }
 
 }

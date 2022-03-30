@@ -1,9 +1,13 @@
-package product;
+package com.henri.kbe;
 
+import com.henri.kbe.domain.model.Product;
+import com.henri.kbe.adapter.data.ProductRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -13,7 +17,13 @@ public class ProductConfig {
 
     @LoadBalanced
     @Bean
+    @Primary
     public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean("qualifiedBean")
+    public RestTemplate externalRestTemplate() {
         return new RestTemplate();
     }
 
