@@ -74,15 +74,6 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>§{spring.boot.maven.plugin.version}</version>
-          <configuration>
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${org.mapstruct.version}</version>
-              </path>
-            </annotationProcessorPaths>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
