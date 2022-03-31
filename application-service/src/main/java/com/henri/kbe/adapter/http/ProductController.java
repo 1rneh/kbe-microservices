@@ -1,6 +1,5 @@
 package com.henri.kbe.adapter.http;
 
-
 import com.henri.kbe.domain.ProductService;
 import com.henri.kbe.domain.dto.ProductDetailsDto;
 import com.henri.kbe.domain.dto.ProductDto;
@@ -17,6 +16,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+
 
     @PostMapping
     public void addProduct(
@@ -35,5 +35,12 @@ public class ProductController {
             @PathVariable long productId
     ) {
         return productService.getProduct(productId);
+    }
+
+    @GetMapping({"/weather-for-origin/{origin}"})
+    public Object getWeather(
+            @PathVariable(value="origin") String origin
+    ) {
+        return productService.checkoutWeather(origin);
     }
 }

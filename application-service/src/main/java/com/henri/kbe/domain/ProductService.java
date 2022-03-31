@@ -1,6 +1,7 @@
 package com.henri.kbe.domain;
 
 import com.henri.kbe.adapter.clients.CalculatorServiceClient;
+import com.henri.kbe.adapter.clients.OpenWeatherApiClient;
 import com.henri.kbe.adapter.clients.StorageServiceClient;
 import com.henri.kbe.adapter.data.ProductRepository;
 import com.henri.kbe.domain.model.Product;
@@ -23,6 +24,7 @@ public class ProductService {
 
     private final CalculatorServiceClient calculatorServiceClient;
     private final StorageServiceClient storageServiceClient;
+    private final OpenWeatherApiClient openWeatherApiClient;
     private final ProductRepository productRepository;
 
     public void addNewProduct(ProductDto productDto) {
@@ -81,5 +83,11 @@ public class ProductService {
                 deliveryInfoDto.deliveryTime(),
                 deliveryInfoDto.amount(),
                 deliveryInfoDto.location());
+    }
+
+    public Object checkoutWeather(String country) {
+
+        if (country == null) throw new ResponseStatusException(HttpStatus.CONFLICT, "Country/city must not be null");
+        return openWeatherApiClient.checkoutWeather(country);
     }
 }
