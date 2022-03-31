@@ -14,13 +14,7 @@ import java.util.List;
 public class ProductConfig {
 
     @Bean
-    @Primary
     public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean("qualifiedBean")
-    public RestTemplate externalRestTemplate() {
         return new RestTemplate();
     }
 

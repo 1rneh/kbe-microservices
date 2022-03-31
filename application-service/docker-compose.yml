@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+  openssh-server:
+    container_name: openssh-server
+    image: lscr.io/linuxserver/openssh-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ssh:/data/ssh
+    ports:
+      - "22:22"
+    restart: unless-stopped
+
+volumes:
+  ssh:
