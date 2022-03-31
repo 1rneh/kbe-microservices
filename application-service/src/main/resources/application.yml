@@ -5,10 +5,13 @@ spring:
   application:
     name: application-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/product_db
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/storage_db
     username: henri
     password: password
   jpa:
+    database:
+      POSTGRESQL
     hibernate:
       ddl-auto: update
     show-sql: true
