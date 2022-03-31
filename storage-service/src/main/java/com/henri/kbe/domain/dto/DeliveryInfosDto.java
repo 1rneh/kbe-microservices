@@ -6,6 +6,10 @@ import java.sql.Time;
 
 public record DeliveryInfosDto(
         @NotNull
+        String id,
+        @NotNull
+        String name,
+        @NotNull
         Time deliveryTime,
         String location,
         @NotNull

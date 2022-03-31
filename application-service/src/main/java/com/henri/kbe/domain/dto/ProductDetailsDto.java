@@ -3,7 +3,8 @@ package com.henri.kbe.domain.dto;
 import lombok.Builder;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 
 @Builder
 public record ProductDetailsDto(
@@ -19,9 +20,9 @@ public record ProductDetailsDto(
         boolean edible,
         String origin,
         @NotNull
-        Date deliveryDate,
+        LocalDate deliveryDate,
         @NotNull
-        Date deliveryTime,
+        Time deliveryTime,
         int amount,
         String location
 ) { }

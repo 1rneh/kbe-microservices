@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -43,7 +40,7 @@ public class Product {
     private String origin;
 
     @Column(nullable = false)
-    private Date deliveryDate;
+    private LocalDate deliveryDate;
 
     public Product(String name, String description, double price, boolean edible, String origin) {
         this.name = name;
@@ -51,7 +48,7 @@ public class Product {
         this.price = price;
         this.edible = edible;
         this.origin = origin;
-        this.deliveryDate = Date.from(Instant.now().plus(Duration.ofDays(5)));
+        this.deliveryDate = LocalDate.now().plusDays(5);
     }
 
 }

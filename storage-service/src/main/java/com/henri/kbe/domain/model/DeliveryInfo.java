@@ -17,13 +17,13 @@ public class DeliveryInfo {
     @Indexed(unique = true)
     private String name;
 
-    private Time deliveryTime;
+    private long deliveryTime;
 
     private BigDecimal amount;
 
     private String location;
 
-    public DeliveryInfo(String name, Time deliveryTime, BigDecimal amount, String location) {
+    public DeliveryInfo(String name, long deliveryTime, BigDecimal amount, String location) {
         this.name = name;
         this.deliveryTime = deliveryTime;
         this.amount = amount;
