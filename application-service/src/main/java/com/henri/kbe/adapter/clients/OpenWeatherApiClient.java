@@ -17,7 +17,7 @@ public class OpenWeatherApiClient {
 
     private final RestTemplate restTemplate;
 
-    public ResponseEntity<Object> checkoutWeather(@NotNull String country) {
+    public ResponseEntity<Object> getCoordinates(@NotNull String country) {
 
         if (country == null) throw new ApiException("Country/city must not be null. Getting weather data failed.");
 

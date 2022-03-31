@@ -17,7 +17,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-
     @PostMapping
     public void addProduct(
             @Valid @RequestBody ProductDto productDto
@@ -37,10 +36,15 @@ public class ProductController {
         return productService.getProduct(productId);
     }
 
-    @GetMapping({"/weather-for-origin/{origin}"})
+    @GetMapping({"/coordinates-for-origin/{origin}"})
     public Object getWeather(
             @PathVariable(value="origin") String origin
     ) {
-        return productService.checkoutWeather(origin);
+        return productService.getCoordinates(origin);
+    }
+
+    @PostMapping("/exportData")
+    public void exportData() {
+
     }
 }
