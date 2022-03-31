@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Service
 public class StorageServiceClient {
 
-    public static final String DELIVERY_INFO_URL = "https://storage-service/rest/delivery-infos/{productName}";
+    public static final String DELIVERY_INFO_URL = "http://localhost:8083/rest/delivery-infos/{productName}";
     private final RestTemplate restTemplate;
 
     public DeliveryInfoDto getDeliveryInfoForProduct(@NotNull Product product) {

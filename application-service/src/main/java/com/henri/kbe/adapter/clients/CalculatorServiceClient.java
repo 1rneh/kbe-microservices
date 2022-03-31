@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Service
 public class CalculatorServiceClient {
 
-    public static final String TAX_CALCULATION_URL = "https://calculator-service/rest/calculator/{productPrice}";
+    public static final String TAX_CALCULATION_URL = "http://localhost:8082/rest/calculator/{productPrice}";
     private final RestTemplate restTemplate;
 
     public TaxDto getTaxCalculationForProduct(@NotNull Product product) {
