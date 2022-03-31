@@ -17,6 +17,6 @@ public class CalculatorService {
         if (price < 0)  {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Price must be a positive number.");
         }
-        return new TaxDto(taxCalculator.calculateMehrwertsteuer(price));
+        return new TaxDto(taxCalculator.calculateTax(price));
     }
 }

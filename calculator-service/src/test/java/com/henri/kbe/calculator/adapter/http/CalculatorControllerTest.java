@@ -3,6 +3,8 @@ package com.henri.kbe.calculator.adapter.http;
 import com.henri.kbe.CalculatorApplication;
 import com.henri.kbe.calculator.domain.CalculatorService;
 import com.henri.kbe.calculator.domain.TaxCalculator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CalculatorController.class)
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = {CalculatorApplication.class, CalculatorService.class, TaxCalculator.class})
-public class CalculatorServiceTest {
+class CalculatorControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,4 +58,13 @@ public class CalculatorServiceTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(405));
     }
+
+    @Test
+    public void whenPriceIsNegative_ThenStatus405() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/rest/calculator/-5")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(405));
+    }
+
 }
