@@ -20,6 +20,14 @@ spring:
           dialect: org.hibernate.dialect.PostgreSQLDialect
           format_sql: 'true'
 
+sftp:
+  host: localhost
+  port: 22
+  username: henri
+  password: password
+  sessionTimeout: 150000
+  channelTimeout: 150000
+
 eureka:
   client:
     service-url:

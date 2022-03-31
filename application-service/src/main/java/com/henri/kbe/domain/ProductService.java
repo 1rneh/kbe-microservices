@@ -85,9 +85,9 @@ public class ProductService {
                 deliveryInfoDto.location());
     }
 
-    public Object checkoutWeather(String country) {
+    public Object getCoordinates(String country) {
 
         if (country == null) throw new ResponseStatusException(HttpStatus.CONFLICT, "Country/city must not be null");
-        return openWeatherApiClient.checkoutWeather(country);
+        return openWeatherApiClient.getCoordinates(country);
     }
 }
