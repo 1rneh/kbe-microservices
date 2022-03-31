@@ -1,7 +1,8 @@
-package storage;
+package com.henri.kbe.adapter.data;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import com.henri.kbe.domain.model.DeliveryInfo;
 
 import java.util.Optional;
 
@@ -9,4 +10,5 @@ public interface DeliveryInfoRepository extends MongoRepository<DeliveryInfo, St
 
     Optional<DeliveryInfo> findByName(String name);
 
+    boolean existsByName(String name);
 }

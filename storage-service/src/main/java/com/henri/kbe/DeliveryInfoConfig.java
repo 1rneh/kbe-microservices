@@ -1,13 +1,14 @@
-package storage;
+package com.henri.kbe;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.henri.kbe.domain.model.DeliveryInfo;
+import com.henri.kbe.adapter.data.DeliveryInfoRepository;
 
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 @Configuration
