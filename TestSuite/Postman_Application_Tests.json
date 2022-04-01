@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "8d748f1b-a268-4d90-9969-ed811b9f2d64",
+		"name": "kbe-services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "calculator-service",
+			"item": [
+				{
+					"name": "http://localhost:8762/rest/calculator/2.99",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Correct price input should return status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Correct price input should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Correct price input should contain tax result\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.tax).to.eql(0.5681);   ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"banane\",\n    \"location\": \"palme\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8762/rest/calculator/2.99",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"calculator",
+								"2.99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8762/rest/calculator/-2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Negative price input should return status 400\", function(){",
+									"    pm.response.to.have.status(409);",
+									"})",
+									"",
+									"pm.test(\"Negative price input should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Negative price input should contain Conflict error\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.error).to.eql(\"Conflict\");   ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8762/rest/calculator/-2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"calculator",
+								"-2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "application-service",
+			"item": [
+				{
+					"name": "http://localhost:8762/rest/calculator/-2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"rest/products should return Status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Products table should contain 10 entries\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.length).to.eql(10); ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8762/rest/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8762/rest/products/coordinates-for-origin/Rom",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Correct location input should return JSON with coordinate property\", function() {",
+									"    responseBody.has(\"coord\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8762/rest/products/coordinates-for-origin/Rom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"products",
+								"coordinates-for-origin",
+								"Rom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8762/rest/products/",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valid Product id should return correct product values\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.name).to.eql('apple');",
+									"    pm.expect(responseJson.description).to.eql('is tasty and red');",
+									"    pm.expect(responseJson.price).to.eql(1.99);",
+									"    pm.expect(responseJson.edible).to.eql(true);",
+									"    pm.expect(responseJson.origin).to.eql('Italy');",
+									"});",
+									"",
+									"pm.test(\"Valid Product id should return correct tax calculation\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.tax).to.eql(0.3781);   ",
+									"});",
+									"",
+									"pm.test(\"Valid Product id should return correct delivery-info values\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.deliveryTime).to.eql('01:01:20');",
+									"    pm.expect(responseJson.amount).to.eql(10);",
+									"    pm.expect(responseJson.location).to.eql('here');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8762/rest/products/552",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"products",
+								"552"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "storage-service",
+			"item": [
+				{
+					"name": "http://localhost:8083/rest/delivery-infos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"rest/delivery-infos should return Status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Delivery infos table should contain 10 entries\", () => {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.length).to.eql(10); ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/delivery-infos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"delivery-infos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/rest/delivery-infos/apple",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Correct name input should return correct delivery infos\", function() {",
+									"    responseBody.has(\"location\");",
+									"    responseBody.has(\"deliveryTime\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/delivery-infos/apple",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"delivery-infos",
+								"apple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/rest/delivery-infos/apple Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should return json body\", function(){",
+									"    pm.response.to.have.jsonBody();",
+									"});",
+									"",
+									"pm.test(\"Incorrect product name should return status 404\", function(){",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/delivery-infos/not-a-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"delivery-infos",
+								"not-a-product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "import-export-test",
+			"item": [
+				{
+					"name": "http://localhost:8083/rest/storage-products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"DeleteMapping should return with status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/storage-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"storage-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/rest/storage-products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The GET Mapping for empty table should return status 200 and JSON\", function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/storage-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"storage-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8762/rest/products/export",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Exporting data should return status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8762/rest/products/export",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"rest",
+								"products",
+								"export"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8762/rest/products/exportData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Exporting data should return status 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/rest/storage-products/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"rest",
+								"storage-products",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/rest/storage-products",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
