@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 @Service
 public class FileReceiverSftp {
-
+/*
     @Value("${sftp.host}")
     private String host;
 
@@ -69,4 +69,6 @@ public class FileReceiverSftp {
         } catch (JSchException e) {
         }
     }
+
+ */
 }

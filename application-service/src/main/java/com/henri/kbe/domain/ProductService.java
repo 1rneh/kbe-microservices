@@ -103,7 +103,7 @@ public class ProductService {
                         .collect(Collectors.toList());
         try {
             csvExportService.exportCsv(productDetailsDtos);
-        } finally {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Could not export data");
         }
 

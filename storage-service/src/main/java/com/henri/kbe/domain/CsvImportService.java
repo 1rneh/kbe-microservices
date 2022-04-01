@@ -1,4 +1,4 @@
-package com.henri.kbe.adapter;
+package com.henri.kbe.domain;
 
 import com.henri.kbe.adapter.data.ProductRepository;
 import com.henri.kbe.domain.model.ProductDetails;
@@ -32,8 +32,9 @@ public class CsvImportService {
     }
     public void importData() {
         try {
+            List<ProductDetails> storedProductDetails = productRepository.findAll();
+            if (!storedProductDetails.isEmpty()) emptyTable();
             productRepository.saveAll(readCSV());
-            System.out.println(productRepository.findAll().size());
         } catch (IOException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Import failed");
         }
