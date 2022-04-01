@@ -1,18 +1,12 @@
-package com.henri.kbe.adapter;
+package com.henri.kbe.adapter.sftp;
 
-import java.io.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jcraft.jsch.*;
 
 @Service
-public class FileTransferService {
-
-    private Logger logger = LoggerFactory.getLogger(FileTransferService.class);
+public class FileTransmitterSftp {
 
     @Value("${sftp.host}")
     private String host;
@@ -38,23 +32,6 @@ public class FileTransferService {
             channelSftp.put(localFilePath, remoteFilePath);
             return true;
         } catch (SftpException e) {
-            logger.error("Error upload file", e);
-        } finally {
-            disconnectChannelSftp(channelSftp);
-        }
-        return false;
-    }
-
-    public boolean downloadFile(String localFilePath, String remoteFilePath) {
-        ChannelSftp channelSftp = createChannelSftp();
-        OutputStream outputStream;
-        try {
-            File file = new File(localFilePath);
-            outputStream = new FileOutputStream(file);
-            channelSftp.get(remoteFilePath, outputStream);
-            return true;
-        } catch (SftpException | FileNotFoundException e) {
-            logger.error("Error download file", e);
         } finally {
             disconnectChannelSftp(channelSftp);
         }
@@ -74,7 +51,6 @@ public class FileTransferService {
             channel.connect(channelTimeout);
             return (ChannelSftp) channel;
         } catch (JSchException e) {
-            logger.error("Create ChannelSftp error", e);
         }
         return null;
     }
@@ -85,7 +61,6 @@ public class FileTransferService {
             if (channelSftp.isConnected()) channelSftp.disconnect();
             if (channelSftp.getSession() != null) channelSftp.getSession().disconnect();
         } catch (JSchException e) {
-            logger.error("SFTP disconnect error", e);
         }
     }
 }
