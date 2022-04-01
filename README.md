@@ -36,5 +36,5 @@ mvn clean package
 
 ### Sequenzdiagramm
 
-(gleich online)
+<img src="https://github.com/1rneh/kbe-microservices/blob/main/Sequenzdiagramm.jpg" alt="Sequenzdiagramm" title="Sequenzdiagramm"/>
 
