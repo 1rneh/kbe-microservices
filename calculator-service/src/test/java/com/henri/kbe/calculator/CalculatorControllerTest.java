@@ -1,11 +1,10 @@
-package com.henri.kbe.calculator.adapter.http;
+package com.henri.kbe.calculator;
 
 import com.henri.kbe.CalculatorApplication;
+import com.henri.kbe.calculator.adapter.http.CalculatorController;
 import com.henri.kbe.calculator.domain.CalculatorService;
 import com.henri.kbe.calculator.domain.TaxCalculator;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CalculatorController.class)
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = {CalculatorApplication.class, CalculatorService.class, TaxCalculator.class})
-class CalculatorControllerTest {
+public class CalculatorControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
