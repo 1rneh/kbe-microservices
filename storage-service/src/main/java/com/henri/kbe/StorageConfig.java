@@ -69,7 +69,7 @@ public class StorageConfig {
                     "coffee",
                     Instant.now().toEpochMilli(),
                     BigDecimal.ONE,
-                    "arround the corner"
+                    "around the corner"
             );
             DeliveryInfo carrot = new DeliveryInfo(
                     "carrot",
