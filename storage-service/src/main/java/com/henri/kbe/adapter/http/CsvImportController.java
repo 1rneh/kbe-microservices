@@ -1,6 +1,6 @@
 package com.henri.kbe.adapter.http;
 
-import com.henri.kbe.adapter.CsvImportService;
+import com.henri.kbe.domain.CsvImportService;
 import com.henri.kbe.domain.model.ProductDetails;
 import lombok.AllArgsConstructor;
 

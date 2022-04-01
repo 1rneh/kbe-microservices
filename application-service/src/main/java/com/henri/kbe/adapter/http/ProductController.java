@@ -43,7 +43,7 @@ public class ProductController {
         return productService.getCoordinates(origin);
     }
 
-    @RequestMapping("/exportProducts")
+    @RequestMapping("/export")
     public void exportData() {
         productService.exportProducts();
     }
