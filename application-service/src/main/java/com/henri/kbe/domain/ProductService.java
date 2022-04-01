@@ -1,5 +1,6 @@
 package com.henri.kbe.domain;
 
+import com.henri.kbe.adapter.clients.CsvExportingClient;
 import com.henri.kbe.adapter.clients.CalculatorServiceClient;
 import com.henri.kbe.adapter.clients.OpenWeatherApiClient;
 import com.henri.kbe.adapter.clients.StorageServiceClient;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,7 @@ public class ProductService {
     private final StorageServiceClient storageServiceClient;
     private final OpenWeatherApiClient openWeatherApiClient;
     private final ProductRepository productRepository;
+    private final CsvExportingClient csvExportService;
 
     public void addNewProduct(ProductDto productDto) {
 
@@ -89,5 +92,20 @@ public class ProductService {
 
         if (country == null) throw new ResponseStatusException(HttpStatus.CONFLICT, "Country/city must not be null");
         return openWeatherApiClient.getCoordinates(country);
+    }
+
+    public void exportProducts() {
+        List<ProductDetailsDto> productDetailsDtos =
+                productRepository
+                        .findAll()
+                        .stream()
+                        .map(this::retrieveProductInformation)
+                        .collect(Collectors.toList());
+        try {
+            csvExportService.exportCsv(productDetailsDtos);
+        } finally {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Could not export data");
+        }
+
     }
 }
