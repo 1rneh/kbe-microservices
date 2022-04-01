@@ -32,7 +32,7 @@ mvn clean package
 ## Überblick
 ### Architekturdiagramm
 
-<img src="./Architekturdiagramm_KBE.jpg" alt="Architekturdiagramm" title="Architekturdiagramm"/>
+<img src="https://github.com/1rneh/kbe-microservices/blob/main/Architekturdiagramm.jpg" alt="Architekturdiagramm" title="Architekturdiagramm"/>
 
 ### Sequenzdiagramm
 
