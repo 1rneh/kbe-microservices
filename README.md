@@ -1,14 +1,7 @@
 
-# Komponentenbasierte Entwicklung - Beleg
-
-
+# Komponentenbasierte Entwicklung - Modulbeleg
 
 _Hochschule für Technik und Wirtschaft Berlin
-
-
-| Name             | Matrikelnummer |
-|:-----------------|----------------|
-| Janika Neuberger | 569713         |
 
 ---
 
